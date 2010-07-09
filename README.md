@@ -1,7 +1,7 @@
 ec2manage
 =========
 
-ec2manage is a command line tool for managing EC2 instances.
+ec2manage will be a command line tool for managing EC2 instances.
 
 It's main goal is to provide the same style of control as the Amazon EC2 API Tools but with additional structure and metadata make administrative decisions easier.
 
