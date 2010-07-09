@@ -1,6 +1,8 @@
 ec2manage
 =========
 
+NOTE: Currently this project is vaporware. Consider this documentation-driven-development.
+
 ec2manage will be a command line tool for managing EC2 instances.
 
 It's main goal is to provide the same style of control as the Amazon EC2 API Tools but with additional structure and metadata make administrative decisions easier.
@@ -22,8 +24,9 @@ Creating machines
 
 Create a new Ubuntu 9 machine with 10GB blank EBS on /dev/sdi1 nicknamed "beta" in the web security group:
 
-    > ec2manage create -z us-east-1d -a ami-bb709dd2 -k my-keypair \
-                       -g web -v 10 -s snap-6a0a8c03 -d sdi -n beta
+    > ec2manage create --zone us-east-1d --ami ami-bb709dd2 --keypair my-keypair \
+                       --group web --volume-size 10 --snapshot snap-6a0a8c03 \
+                       --device sdi --name beta
 
 Of course, specifying this every time would be tedious, so you can also build machine templates in JSON. The above machine would look like this:
 
@@ -56,7 +59,7 @@ Naming machines
 
 You can get a JSON list of all images and volumes by running ec2manage with no arguments:
 
-    > ec2manage
+    > ec2manage list
 
 You can also give your instances new nicknames using the rename command:
 
