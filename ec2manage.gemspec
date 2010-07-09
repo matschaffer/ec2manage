@@ -1,16 +1,12 @@
-Gem::Specification.new do |s|
-  s.name = 'ec2manage'
-  s.version = "0.0.1"
-  s.summary = "A command-line manager for EC2 instances."
-  s.description = <<-EOS.gsub(/ {4}/,'')
-    ec2manage is a command line tool for managing EC2 instances.
+require File.join(File.dirname(__FILE__), 'lib', 'ec2manage')
 
-    It's main goal is to provide the same style of control as the
-    Amazon EC2 API Tools but with additional structure and metadata
-    make administrative decisions easier.
-  EOS
-  
-  s.add_dependency("thor", "= 0.13.7")
+Gem::Specification.new do |s|
+  s.name        = EC2Manage.name
+  s.version     = EC2Manage.version
+  s.summary     = EC2Manage.summary
+  s.description = EC2Manage.description
+
+  s.add_dependency("commander", "= 4.0.2")
   s.add_dependency("json", "= 1.4.3")
   s.add_dependency("right_aws", "= 2.0.0")
 
@@ -22,7 +18,7 @@ Gem::Specification.new do |s|
   s.has_rdoc    = false
   s.author      = "Mat Schaffer"
   s.email       = "mat@schaffer.me"
-  s.homepage    = "http://matschaffer.com"
+  s.homepage    = "http://github.com/matschaffer/ec2manage"
 
   s.rubyforge_project = "suppress_warnings"
 end
