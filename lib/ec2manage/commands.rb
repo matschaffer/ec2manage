@@ -10,7 +10,7 @@ default_command :help
 
 command :create do |c|
   c.syntax      = '[options]'
-  c.summary     = 'Create an instance'
+  c.summary     = 'Create an instance.'
   c.description = 'Creates an EC2 instance according to the specified options.'
 
   c.option '-t', '--template STRING',    'JSON template to use when creating the instance.'
@@ -28,5 +28,39 @@ command :create do |c|
     options.default :template => 'default'
     debugger; 1
     say "hello creation of template: #{options.template}"
+  end
+end
+
+command :list do |c|
+  c.summary     = 'List all instances.'
+  c.description = 'Lists all instances associated with the current account.'
+
+  c.action do |args, options|
+    say "hello listing"
+  end
+end
+
+command :rename do |c|
+  c.summary     = 'Rename an instance or volume.'
+  c.description = 'Renames the specified instance or volume.'
+  c.syntax      = '<old-name> <new-name>'
+
+  c.action do |args, options|
+    old_name = args.shift or raise 'Please specify an instance or volume to rename'
+    new_name = args.shift or raise 'Please specify a new name for this instance or volume'
+    say "hello rename"
+  end
+end
+
+command :delete do |c|
+  c.summary     = 'Delete an instance or volume.'
+  c.description = 'Deletes the specified instance or volume.'
+  c.syntax      = '<name> [options]'
+
+  c.option '-v', '--volumes', 'Also delete any associated volumes.'
+
+  c.action do |args, options|
+    name = args.shift or raise 'Please specify an instance or volume to delete'
+    say "hello delete"
   end
 end
