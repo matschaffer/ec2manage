@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'ec2manage'
+rescue LoadError
+  require 'rubygems'
+  require 'ec2manage'
+end
+
+EC2Manage::Commands.start
