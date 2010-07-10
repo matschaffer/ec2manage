@@ -26,5 +26,7 @@ module EC2Manage
   end
 end
 
+require 'ec2manage/structure'
+
 require 'ruby-debug'
 raise 'Take out the debugger!' if EC2Manage.building?
