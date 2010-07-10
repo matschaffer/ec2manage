@@ -26,5 +26,5 @@ module EC2Manage
   end
 end
 
-#require 'ruby-debug'
-#raise 'Take out the debugger!' if EC2Manage.building?
+require 'ruby-debug'
+raise 'Take out the debugger!' if EC2Manage.building?
