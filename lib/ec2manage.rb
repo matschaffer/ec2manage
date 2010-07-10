@@ -1,6 +1,6 @@
 module EC2Manage
   def self.version
-    '0.0.1'
+    '0.0.2'
   end
 
   def self.name
@@ -26,5 +26,5 @@ module EC2Manage
   end
 end
 
-require 'ruby-debug'
-raise 'Take out the debugger!' if EC2Manage.building?
+#require 'ruby-debug'
+#raise 'Take out the debugger!' if EC2Manage.building?
