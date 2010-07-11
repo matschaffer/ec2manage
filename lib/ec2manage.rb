@@ -21,6 +21,10 @@ module EC2Manage
     EOS
   end
 
+  def self.directory
+    '.' + name
+  end
+
   def self.building?
     $0.include?("gem") && ARGV[0] == "build"
   end

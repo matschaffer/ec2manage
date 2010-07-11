@@ -1,0 +1,9 @@
+{ "zone":    "us-east-1d",
+  "ami":     "ami-bb709dd2",
+  "keypair": "my-keypair",
+  "group":   "web",
+  "volumes": [
+    { "size":     10,
+      "snapshot": "snap-6a0a8c0",
+      "device":   "sdi" }
+  ] }
