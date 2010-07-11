@@ -11,6 +11,13 @@ class EC2Manage::Structure
   def initialize(options)
     @options = options
     load_template
+    override_options
+  end
+
+  def override_options
+    [:zone, :ami, :keypair, :group, :name].each do |key|
+      instance_variable_set("@#{key}", options[key]) if options[key]
+    end
   end
 
   def load_template

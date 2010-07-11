@@ -22,7 +22,7 @@ describe EC2Manage::Structure do
   end
 
   it "should read in the base structure from the provided template file" do
-    s = Structure.new(:template => File.join(File.dirname(__FILE__), 'fixtures', 'default.json'))
+    s = Structure.new(:template => @template)
 
     s.zone.should         == 'us-east-1d'
     s.ami.should          == 'ami-bb709dd2'
@@ -36,5 +36,8 @@ describe EC2Manage::Structure do
     v.device.should   == 'sdi'
   end
 
-  it "should override template structure if provided with other constructor arguments"
+  it "should override basic template attributes if provided with other constructor arguments" do
+    s = Structure.new(:template => @template, :ami => "bob")
+    s.ami.should == "bob"
+  end
 end
