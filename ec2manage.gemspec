@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'lib', 'ec2manage')
+require File.join(File.dirname(__FILE__), 'lib', 'ec2manage', 'info')
 
 Gem::Specification.new do |s|
   s.name        = EC2Manage.name
@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.summary     = EC2Manage.summary
   s.description = EC2Manage.description
 
-  s.add_dependency             'commander', '= 4.0.3'
-  s.add_dependency             'json',      '= 1.4.3'
-  s.add_dependency             'right_aws', '= 2.0.0'
+  s.add_dependency 'commander', '= 4.0.3'
+  s.add_dependency 'json_pure', '= 1.4.3'
+  s.add_dependency 'right_aws', '= 2.0.0'
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'mocha'
