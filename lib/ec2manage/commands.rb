@@ -26,7 +26,10 @@ command :create do |c|
 
   c.action do |args, options|
     options.default :template => 'default'
-    debugger; 1
+    
+    #EC2Manage::Structure.new(options.__hash__)
+    #EC2Manage::Creator.new(structure, self).run
+
     say "hello creation of template: #{options.template}"
   end
 end
