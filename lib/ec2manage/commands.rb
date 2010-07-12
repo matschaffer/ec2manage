@@ -1,6 +1,6 @@
 require 'ec2manage'
 require 'commander/import'
-require 'ec2manage/commander_ext'
+require 'ec2manage/ext/commander'
 
 program :name,        EC2Manage.name
 program :version,     EC2Manage.version
