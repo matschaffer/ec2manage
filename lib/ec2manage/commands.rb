@@ -1,6 +1,7 @@
 require 'ec2manage'
 require 'commander/import'
 require 'ec2manage/ext/commander'
+require 'ec2manage/ext/highline'
 
 program :name,        EC2Manage.name
 program :version,     EC2Manage.version
@@ -8,7 +9,7 @@ program :description, EC2Manage.summary
 
 default_command :help
 
-command :create do |c|
+command :instance do |c|
   c.syntax      = '[options]'
   c.summary     = 'Create an instance.'
   c.description = 'Creates an EC2 instance according to the specified options.'
@@ -26,11 +27,19 @@ command :create do |c|
 
   c.action do |args, options|
     options.default :template => 'default'
-    
-    #EC2Manage::Structure.new(options.__hash__)
-    #EC2Manage::Creator.new(structure, self).run
-
     say "hello creation of template: #{options.template}"
+  end
+end
+
+command :keypair do |c|
+  c.syntax = '<name>'
+  c.summary = 'Create a keypair.'
+  c.description = 'Creates a keypair with the specified name and writes it to ~/.ssh.'
+
+  c.action do |args|
+    name = args.shift or raise 'Please specify a name for this keypair.'
+    keypair = EC2Manage::Connection.new(self).connection.create_key_pair(name)
+    EC2Manage::KeyManager.new.store(keypair)
   end
 end
 
