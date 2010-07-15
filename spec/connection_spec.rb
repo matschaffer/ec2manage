@@ -17,7 +17,14 @@ describe EC2Manage::Connection do
 
   it "should assist the user in storing the credentials when the file doesn't exist" do
     File.expects(:exist?).with(Connection.credentials_path).returns(false)
+
     @mock_ui.expects(:say).at_least_once
+    @mock_ui.expects(:color).at_least_once
+    @mock_ui.expects(:ask).returns('mock_input').twice
+
+    FileUtils.expects(:mkdir_p)
+    File.any_instance.expects(:print)
+
     Connection.new(@mock_ui).connection
   end
 end
