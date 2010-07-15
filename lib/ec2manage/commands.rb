@@ -9,7 +9,11 @@ program :description, EC2Manage.summary
 
 default_command :help
 
-command :instance do |c|
+def connection
+  EC2Manage::Connection.new(self).connection
+end
+
+command "create-instance" do |c|
   c.syntax      = '[options]'
   c.summary     = 'Create an instance.'
   c.description = 'Creates an EC2 instance according to the specified options.'
@@ -31,14 +35,14 @@ command :instance do |c|
   end
 end
 
-command :keypair do |c|
+command "create-keypair" do |c|
   c.syntax = '<name>'
   c.summary = 'Create a keypair.'
   c.description = 'Creates a keypair with the specified name and writes it to ~/.ssh.'
 
   c.action do |args|
     name = args.shift or raise 'Please specify a name for this keypair.'
-    keypair = EC2Manage::Connection.new(self).connection.create_key_pair(name)
+    keypair = connection.create_key_pair(name)
     EC2Manage::KeyManager.new.store(keypair)
   end
 end
@@ -48,7 +52,7 @@ command :list do |c|
   c.description = 'Lists all instances associated with the current account.'
 
   c.action do |args, options|
-    say "hello listing"
+    jj EC2Manage::Lister.new(connection, self).list
   end
 end
 

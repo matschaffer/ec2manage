@@ -1,0 +1,35 @@
+--- 
+- :aws_instance_type: m1.small
+  :aws_availability_zone: us-east-1a
+  :aws_state_code: 16
+  :ip_address: 174.129.134.109
+  :private_dns_name: domU-12-31-39-04-00-95.compute-1.internal
+  :private_ip_address: 10.240.7.99
+  :ssh_key_name: ""
+  :aws_launch_time: "2009-11-18T14:03:25.000Z"
+  :monitoring_state: disabled
+  :ami_launch_index: "0"
+  :aws_owner: "826693181925"
+  :aws_groups: 
+  - default
+  :aws_reservation_id: r-54d38542
+  :instance_class: elastic
+  :aws_reason: ""
+  :aws_product_codes: []
+
+  :block_device_mappings: 
+  - :ebs_status: attached
+    :ebs_volume_id: vol-e600f98f
+    :device_name: /dev/sda1
+    :ebs_attach_time: "2009-11-18T14:03:34.000Z"
+    :ebs_delete_on_termination: true
+  - :ebs_status: attached
+    :ebs_volume_id: vol-f900f990
+    :device_name: /dev/sdk
+    :ebs_attach_time: "2009-11-18T14:03:34.000Z"
+    :ebs_delete_on_termination: true
+  :aws_state: running
+  :dns_name: ec2-174-129-134-109.compute-1.amazonaws.com
+  :aws_image_id: ami-c2a3f5d4
+  :root_device_name: /dev/sda1
+  :aws_instance_id: i-8ce84ae4
