@@ -1,8 +1,19 @@
 require 'right_aws'
+require 'right_http_connection'
+
+Rightscale::HttpConnection.params[:ca_file] = File.join(File.dirname(__FILE__), "cacert-root.crt")
 
 class EC2Manage::Connection
+  def self.config_path
+    "#{ENV['HOME']}/.ec2manage"
+  end
+
   def self.credentials_path
-    "#{ENV['HOME']}/.ec2manage/credentials"
+    "#{config_path}/credentials"
+  end
+
+  def self.right_aws_logger
+    Logger.new("#{config_path}/right_aws.log")
   end
 
   def initialize(ui)
@@ -29,6 +40,7 @@ class EC2Manage::Connection
   end
 
   def connection
-    @connection = RightAws::Ec2.new(@access_key_id, @secret_access_key)
+    @connection = RightAws::Ec2.new(@access_key_id, @secret_access_key,
+                                    :logger => self.class.right_aws_logger)
   end
 end
