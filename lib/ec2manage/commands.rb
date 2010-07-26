@@ -30,8 +30,8 @@ command "create-instance" do |c|
   c.option '-d', '--device STRING',      'Device to attach the volume on.'
 
   c.action do |args, options|
-    options.default :template => 'default'
-    say "hello creation of template: #{options.template}"
+    structure = EC2Manage::Structure.new(self, options.__hash__)
+    say "hello creation of template: #{structure.path}"
   end
 end
 
