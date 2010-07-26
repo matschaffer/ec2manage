@@ -10,7 +10,7 @@ class EC2Manage::Structure
 
   def initialize(options)
     @options = options
-    load_template
+    load_template if File.exist?(path)
     override_options
   end
 
@@ -31,7 +31,7 @@ class EC2Manage::Structure
 
   def ensure_extension(template)
     if template !~ /\.json$/
-      template + '.json'
+      (template || 'default') + '.json'
     else
       template
     end

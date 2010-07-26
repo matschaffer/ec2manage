@@ -40,4 +40,9 @@ describe EC2Manage::Structure do
     s = Structure.new(:template => @template, :ami => "bob")
     s.ami.should == "bob"
   end
+
+  it "should allow construction without a template" do
+    s = Structure.new(:ami => "bob")
+    s.ami.should == "bob"
+  end
 end
