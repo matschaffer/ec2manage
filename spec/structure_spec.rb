@@ -4,8 +4,9 @@ describe EC2Manage::Structure do
   Structure = EC2Manage::Structure
 
   before do
+    @ui = mock('ui')
     @template = File.join(File.dirname(__FILE__), 'fixtures', 'default.json')
-    @structure = Structure.new(:template => @template)
+    @structure = Structure.new(@ui, :template => @template)
   end
 
   it "should add .json extension to a template file if not provided" do
@@ -22,7 +23,7 @@ describe EC2Manage::Structure do
   end
 
   it "should read in the base structure from the provided template file" do
-    s = Structure.new(:template => @template)
+    s = Structure.new(@ui, :template => @template)
 
     s.zone.should         == 'us-east-1d'
     s.ami.should          == 'ami-bb709dd2'
@@ -37,12 +38,17 @@ describe EC2Manage::Structure do
   end
 
   it "should override basic template attributes if provided with other constructor arguments" do
-    s = Structure.new(:template => @template, :ami => "bob")
+    s = Structure.new(@ui, :template => @template, :ami => "bob")
     s.ami.should == "bob"
   end
 
   it "should allow construction without a template" do
-    s = Structure.new(:ami => "bob")
+    s = Structure.new(@ui, :ami => "bob")
     s.ami.should == "bob"
+  end
+
+  it "should warn the user if they don't have a template" do
+    @ui.expects(:say).at_least_once
+    Structure.new(@ui, :template => "somebogusfile")
   end
 end
