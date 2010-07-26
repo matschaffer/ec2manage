@@ -5,7 +5,7 @@ require 'ostruct'
 class EC2Manage::Structure
   attr_reader :options
 
-  attr_reader :zone, :ami, :keypair, :group
+  attr_reader :zone, :ami, :keypair, :groups
   attr_reader :volumes
 
   def initialize(options)

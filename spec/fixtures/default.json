@@ -1,7 +1,7 @@
-{ "zone":    "us-east-1d",
-  "ami":     "ami-bb709dd2",
-  "keypair": "my-keypair",
-  "group":   "web",
+{ "zone":     "us-east-1d",
+  "ami":      "ami-bb709dd2",
+  "keypair":  "my-keypair",
+  "groups":   ["web"],
   "volumes": [
     { "size":     10,
       "snapshot": "snap-6a0a8c0",

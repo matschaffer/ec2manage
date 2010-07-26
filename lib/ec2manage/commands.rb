@@ -52,7 +52,7 @@ command :list do |c|
   c.description = 'Lists all instances associated with the current account.'
 
   c.action do |args, options|
-    jj EC2Manage::Lister.new(connection, self).list
+    jj EC2Manage::Lister.new(connection).list
   end
 end
 

@@ -27,7 +27,7 @@ describe EC2Manage::Structure do
     s.zone.should         == 'us-east-1d'
     s.ami.should          == 'ami-bb709dd2'
     s.keypair.should      == 'my-keypair'
-    s.group.should       == 'web'
+    s.groups.first.should == 'web'
 
     s.volumes.size.should == 1
     v = s.volumes.first

@@ -1,10 +1,25 @@
 class EC2Manage::Lister
-  def initialize(connection, ui)
+  def initialize(connection)
     @connection = connection
-    @ui = ui
   end
 
   def list
-    @connection.describe_instances
+    { 'instances' => instances }
+  end
+
+  def instances
+    @connection.describe_instances.map do |i|
+      { 'zone'    => i[:aws_availability_zone],
+        'ami'     => i[:aws_image_id],
+        'keypair' => i[:ssh_key_name],
+        'groups'  => i[:aws_groups],
+        'volumes' => map_volumes(i[:block_device_mappings]) }
+    end
+  end
+
+  def map_volumes(volumes)
+    volumes.map do |v|
+      { 'device' => v[:device_name] }
+    end
   end
 end
