@@ -9,11 +9,14 @@ class EC2Manage::Lister
 
   def instances
     @connection.describe_instances.map do |i|
-      { 'zone'    => i[:aws_availability_zone],
-        'ami'     => i[:aws_image_id],
-        'keypair' => i[:ssh_key_name],
-        'groups'  => i[:aws_groups],
-        'volumes' => map_volumes(i[:block_device_mappings]) }
+      data = { 'zone'    => i[:aws_availability_zone],
+               'ami'     => i[:aws_image_id],
+               'keypair' => i[:ssh_key_name],
+               'groups'  => i[:aws_groups] }
+
+      data['volumes'] = map_volumes(i[:block_device_mappings]) if i[:block_device_mappings]
+
+      data
     end
   end
 

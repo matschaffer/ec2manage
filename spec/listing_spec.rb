@@ -5,7 +5,9 @@ describe EC2Manage::Lister do
 
   before do
     @mock_connection = mock('connection')
-    @mock_connection.stubs(:describe_instances).returns(YAML.load_file('spec/fixtures/describe_instances.yml'))
+
+    @instance_data = YAML.load_file('spec/fixtures/describe_instances.yml')
+    @mock_connection.stubs(:describe_instances).returns(@instance_data)
   end
 
   it "should organize the output of describe_instances" do
@@ -17,6 +19,13 @@ describe EC2Manage::Lister do
     i['groups'].should == ["default"]
     v = i['volumes'].first
     v['device'].should == "/dev/sda1"
+  end
+
+  it "shouldn't show volumes for instances that have none" do
+    @instance_data.first.delete :block_device_mappings
+
+    i = Lister.new(@mock_connection).list['instances'].first
+    i['volumes'].should be_nil
   end
 
   it "should organize volume details into instance information for attached volumes" do
