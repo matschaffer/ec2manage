@@ -7,6 +7,9 @@ describe EC2Manage::Connection do
     @mock_ui = mock('ui')
     @example_credentials = { "access_key_id" => "AKIBLAHBLAH",
                              "secret_access_key" => "+secret+blahblah" }
+
+    # Silence RightAWS logging
+    Connection.stubs(:right_aws_logger).returns(Logger.new(StringIO.new))
   end
 
   it "should read access and secret from JSON in home directory" do
