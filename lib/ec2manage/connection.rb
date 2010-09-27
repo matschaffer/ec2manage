@@ -1,5 +1,6 @@
 require 'right_aws'
 require 'right_http_connection'
+require 'fileutils'
 
 Rightscale::HttpConnection.params[:ca_file] = File.join(File.dirname(__FILE__), "cacert-root.crt")
 
